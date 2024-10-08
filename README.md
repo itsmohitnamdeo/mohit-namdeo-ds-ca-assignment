@@ -200,7 +200,7 @@ Operation Result: success
 - Approve the Certificate Request: Once the request was generated, I manually reviewed and approved it with the following command:
 
 ```bash
-pki -d ~/.dogtag/pki-tomcat/ca/alias -c Secret.123 -n "PKI Administrator for myCAInstance" ca-cert-request-approve 9
+pki -d ~/.dogtag/pki-tomcat/ca/alias -c Secret.123 -n "PKI Administrator for myCAInstance" ca-cert-request-approve 15
 ```
 The request was successfully approved:
 
