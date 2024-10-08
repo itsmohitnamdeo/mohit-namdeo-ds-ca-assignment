@@ -49,7 +49,6 @@ instance_name: Specifies the name of the DS instance. In this case, I set it to 
 root_password: This sets the password for the DS admin user (cn=Directory Manager). I used Secret.123 as the password.
 suffix: Defines the namespace for the DS instance. I set it to dc=example,dc=com.
 self_sign_cert: Indicates whether to create self-signed certificates for SSL connections. I set it to False as SSL can be enabled after installation.
-You can review other parameters in the configuration file (ds.inf) or refer to the DS documentation for additional details.
 ```
 
 Create the DS Instance:
@@ -75,6 +74,13 @@ To make sure the Directory Server would start automatically on boot, I ran:
 sudo systemctl enable dirsrv@localhost
 ```
 
+![ds](https://github.com/user-attachments/assets/da8bd722-45f4-49f2-875b-37c4a12ce0fd)
+
+## LDAP Users
+
+![ldap-user](https://github.com/user-attachments/assets/c964b5d8-1eae-4e90-a6f6-be66ed072d75)
+
+
 ## CA Configuration - Set Up a CA Server (Creating PKI Subsystems)
 
 After setting up the Directory Server, I moved on to configuring the CA server using Dogtag PKI:
@@ -92,6 +98,13 @@ Enable CA to Start on Boot: I enabled the CA service to start automatically on b
 ```bash
 sudo systemctl enable pki-tomcatd@pki-tomcat.service
 ```
+
+![ca](https://github.com/user-attachments/assets/839d4d75-4efe-41a7-8112-41c8519ed747)
+
+
+## Certificates 
+
+![certificates](https://github.com/user-attachments/assets/51e48678-ceeb-4e23-aa8f-9ab089b479fb)
 
 
 ## Automating Certificate Requests and Approvals with Python
@@ -159,14 +172,14 @@ if __name__ == "__main__":
     main()
 ```
 
+![cert_req_approve](https://github.com/user-attachments/assets/f5a9605b-986d-43c7-9a4b-d943ae619c5b)
+![cert_req_approve1](https://github.com/user-attachments/assets/d706eab4-05ce-459e-9456-a5e4842b1d44)
+
+
+
 ## Manual Certificate Request and Approval
 With the CA server running, I proceeded to create and approve a certificate request:
 
-- Import the Admin Certificate: I imported the admin certificate from the .p12 file using pk12util:
-
-```bash
-sudo pk12util -i /root/.dogtag/pki-tomcat/ca_admin_cert.p12 -d ~/.dogtag/pki-tomcat/ca/alias -K Secret.123
-```
 - Verify Certificate Import: I verified that the certificate was successfully imported:
 
 ```bash
